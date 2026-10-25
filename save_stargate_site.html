@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06152f">
+<title>#SAVE STARGATE — Fait par un fan, pour les fans</title>
+<style>
+:root{--bg:#050b1c;--blue:#12b9ff;--cyan:#74f3ff;--white:#f4fbff;--muted:#b7c9e4;--panel:rgba(10,31,66,.72)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(ellipse at 50% 0%,#103e7b 0%,transparent 48%),radial-gradient(ellipse at 0% 60%,#062c55 0%,transparent 42%),#050b1c}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.75}
+a{color:inherit;text-decoration:none}
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(18px,5vw,70px);background:rgba(3,10,27,.76);backdrop-filter:blur(14px);border-bottom:1px solid #1b9dff38}
+.brand{font-weight:900;letter-spacing:2px;color:var(--cyan);text-shadow:0 0 18px #00bfff88}
+nav{display:flex;gap:22px;font-size:.9rem;color:#d6eaff}
+nav a:hover{color:var(--cyan)}
+.menu{display:none;background:none;border:1px solid #36c7ff;color:white;border-radius:8px;padding:8px}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:130px 22px 80px;position:relative;isolation:isolate}
+.ring{width:min(60vw,470px);aspect-ratio:1;border:12px solid #1a4265;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-48%);z-index:-1;opacity:.35;box-shadow:inset 0 0 30px #16baff,0 0 24px #14baff,0 0 90px #0879ff55;animation:ringpulse 5s ease-in-out infinite}
+.ring:before,.ring:after{content:"";position:absolute;border:3px dashed #39dfff;border-radius:50%;inset:13px;animation:spin 35s linear infinite}
+.ring:after{inset:32px;border-style:solid;border-color:#5ceaff66;animation:spin 22s linear infinite reverse}
+.kicker{color:var(--cyan);font-weight:bold;letter-spacing:5px;text-transform:uppercase;font-size:.8rem;animation:rise .8s both}
+h1{font-size:clamp(3rem,9vw,7.8rem);line-height:.92;letter-spacing:-3px;margin:22px 0;color:#fff;text-shadow:0 0 9px #fff,0 0 25px #009dff,0 0 65px #0077ff;animation:rise .9s .1s both}
+.hero p{max-width:720px;margin:18px auto;color:#d4e8ff;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.7;animation:rise .9s .2s both}
+.buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px;animation:rise .9s .3s both}
+.btn{display:inline-block;padding:15px 23px;border-radius:8px;font-weight:800;letter-spacing:.3px;border:1px solid #64eaff;transition:.25s;cursor:pointer}
+.btn.primary{background:linear-gradient(120deg,#007cff,#00d9ff);color:#001128;box-shadow:0 0 26px #009dff66}
+.btn.secondary{background:#071a35cc}
+.btn:hover{transform:translateY(-4px);box-shadow:0 0 32px #12b9ff99}
+.scroll{position:absolute;bottom:22px;color:#7dcfff;font-size:.8rem;letter-spacing:3px;animation:bob 2s infinite}
+section{padding:100px clamp(20px,7vw,100px);max-width:1300px;margin:auto}
+.section-tag{color:var(--cyan);text-transform:uppercase;letter-spacing:4px;font-size:.75rem;font-weight:800}
+h2{font-size:clamp(2.1rem,5vw,4rem);margin:13px 0 18px;line-height:1.05}
+.lead{max-width:780px;color:var(--muted);font-size:1.1rem;line-height:1.8}
+.glowline{height:2px;width:100%;background:linear-gradient(90deg,transparent,#00bfff,transparent);margin:30px 0;box-shadow:0 0 16px #00bfff}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
+.card{background:linear-gradient(145deg,rgba(16,52,95,.78),rgba(6,16,39,.88));border:1px solid #26baff45;border-radius:18px;padding:28px;position:relative;overflow:hidden;transition:.3s}
+.card:before{content:"";position:absolute;top:0;left:-120%;height:2px;width:100%;background:linear-gradient(90deg,transparent,#6ffaff,transparent);transition:.6s}
+.card:hover{transform:translateY(-7px);border-color:#4eeaff;box-shadow:0 15px 40px #007bff25}
+.card:hover:before{left:120%}
+.icon{font-size:2rem;filter:drop-shadow(0 0 10px #00bfff);margin-bottom:12px}
+.card h3{font-size:1.2rem;margin:8px 0}
+.card p{color:var(--muted);line-height:1.7;margin-bottom:0}
+.goal{display:grid;grid-template-columns:1fr .8fr;gap:40px;align-items:center;background:linear-gradient(130deg,#0a2d5a9c,#07132ce8);border:1px solid #16bfff55;border-radius:24px;padding:clamp(24px,5vw,55px);position:relative;overflow:hidden}
+.goal-number{font-size:clamp(3.5rem,8vw,6rem);font-weight:900;color:white;text-shadow:0 0 25px #00bfff;letter-spacing:-3px}
+.goal-number span{color:var(--cyan)}
+.goal-note{color:var(--muted);line-height:1.7}
+.meter{height:13px;background:#071127;border-radius:30px;overflow:hidden;border:1px solid #1b9bde;margin:20px 0 12px}
+.meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#087bff,#58f5ff);box-shadow:0 0 20px #00bfff;animation:fill 2s 1s forwards}
+.meter-label{font-size:.85rem;color:#9bc8ed}
+.notice{margin-top:25px;border-left:3px solid #ffce65;padding:15px 18px;background:#30251266;color:#f6e8c4;line-height:1.7;border-radius:0 8px 8px 0;font-size:.92rem}
+.callout{text-align:center;padding:65px 25px;border-radius:24px;border:1px solid #25c7ff55;background:radial-gradient(ellipse at center,#0a4b8d8a,transparent 75%)}
+.callout h2{max-width:850px;margin:18px auto}
+.callout p{max-width:700px;margin:0 auto;color:var(--muted);line-height:1.8}
+footer{text-align:center;padding:35px 20px 45px;border-top:1px solid #1e9fff2b;color:#91abc9;font-size:.88rem}
+footer strong{color:var(--cyan)}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes ringpulse{50%{opacity:.55;box-shadow:inset 0 0 40px #16baff,0 0 40px #14baff,0 0 120px #0879ff77}}@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes bob{50%{transform:translateY(7px)}}@keyframes fill{to{width:0%}}
+@media(max-width:800px){nav{display:none;position:absolute;top:64px;right:15px;left:15px;padding:20px;background:#06152ff5;border:1px solid #1c9eea66;border-radius:12px;flex-direction:column}.menu{display:block}.cards{grid-template-columns:1fr}.goal{grid-template-columns:1fr}.ring{width:85vw;opacity:.25}h1{letter-spacing:-1px}section{padding-top:75px;padding-bottom:75px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<header>
+  <a class="brand" href="#accueil">✦ SAVE STARGATE</a>
+  <button class="menu" id="menu" aria-label="Ouvrir le menu">☰ MENU</button>
+  <nav id="nav"><a href="#projet">Le projet</a><a href="#objectifs">Nos objectifs</a><a href="#collecte">Les 5 000 €</a><a href="#rejoindre">Participer</a></nav>
+</header>
+<main>
+<section class="hero" id="accueil">
+  <div class="ring"></div>
+  <div>
+    <div class="kicker">Une communauté · Une passion · Un avenir</div>
+    <h1>#SAVE<br>STARGATE</h1>
+    <p><strong>Fait par un fan, pour les fans.</strong><br>Rassemblons-nous pour faire entendre notre souhait de découvrir de nouvelles aventures dans l'univers Stargate et pour faire vivre cette passion sur YouTube.</p>
+    <div class="buttons"><a class="btn primary" href="#projet">DÉCOUVRIR LE PROJET ↓</a><a class="btn secondary" href="#rejoindre">REJOINDRE LE MOUVEMENT</a></div>
+  </div>
+  <div class="scroll">CONTINUE L'EXPLORATION ↓</div>
+</section>
+
+<section id="projet" class="reveal">
+  <div class="section-tag">Notre mission</div>
+  <h2>La Porte est ouverte.<br><span style="color:var(--cyan)">À nous de faire entendre nos voix.</span></h2>
+  <p class="lead">Stargate, c'est l'exploration, les mystères, les amitiés et des mondes à découvrir. Ce projet de fan veut réunir les passionnés autour d'une ambition commune : soutenir une démarche en faveur de nouvelles aventures Stargate et créer davantage de contenu consacré à cet univers sur YouTube.</p>
+  <div class="glowline"></div>
+  <p class="lead">Pas de promesses impossibles : nous voulons construire une initiative claire, positive et transparente, portée par les fans. Chaque partage peut aider à faire connaître le mouvement.</p>
+</section>
+
+<section id="objectifs" class="reveal">
+  <div class="section-tag">Notre plan de mission</div><h2>Quatre objectifs.<br>Une passion commune.</h2>
+  <div class="cards">
+    <article class="card"><div class="icon">💙</div><h3>01 · Soutenir une démarche</h3><p>Préparer une demande structurée et la transmettre aux interlocuteurs concernés afin d'exprimer le souhait des fans de voir l'univers Stargate continuer.</p></article>
+    <article class="card"><div class="icon">🌀</div><h3>02 · Rassembler les fans</h3><p>Faire grandir une communauté francophone et internationale, partager nos souvenirs, nos idées et notre enthousiasme pour SG-1, Atlantis et Universe.</p></article>
+    <article class="card"><div class="icon">📺</div><h3>03 · Créer sur YouTube</h3><p>Développer des vidéos, analyses, théories, actualités, discussions et créations de fans autour de Stargate.</p></article>
+    <article class="card"><div class="icon">🌌</div><h3>04 · Faire vivre l'univers</h3><p>Continuer à explorer les idées et les histoires qui nous passionnent, tout en respectant les œuvres originales et leurs ayants droit.</p></article>
+    <article class="card"><div class="icon">📣</div><h3>05 · Faire connaître #SaveStargate</h3><p>Partager le projet, parler du mouvement et encourager les fans à exprimer leur intérêt de manière positive et respectueuse.</p></article>
+    <article class="card"><div class="icon">🔎</div><h3>06 · Être transparent</h3><p>Présenter clairement les dépenses prévues et communiquer sur l'avancement. La confiance de la communauté passe avant tout.</p></article>
+  </div>
+</section>
+
+<section id="collecte" class="reveal">
+  <div class="goal">
+    <div><div class="section-tag">Objectif de collecte envisagé</div><div class="goal-number">5 000<span> €</span></div><h2>Chaque geste aide à faire avancer le projet.</h2><p class="goal-note">L'objectif envisagé est de réunir 5 000 € pour soutenir la préparation et la communication de la démarche, ainsi que les projets Stargate prévus sur YouTube. Les dépenses devront être détaillées avant le lancement d'une collecte.</p><div class="meter"><span></span></div><div class="meter-label">Objectif : 5 000 € · La collecte n'est pas ouverte depuis cette page.</div></div>
+    <div><div class="icon" style="font-size:3.2rem">⚠️</div><h3>Une démarche de fans, pas une promesse de nouvelle série</h3><p class="goal-note">Une collecte ne garantit ni le lancement d'une nouvelle série ni l'accord d'un studio. La décision appartient aux détenteurs des droits et aux professionnels concernés. Le montant récolté et son utilisation devront être expliqués honnêtement aux contributeurs.</p><div class="notice">Avant de demander des contributions, définis un budget précis, vérifie les règles de la plateforme de collecte et explique ce qui se passera si l'objectif n'est pas atteint.</div></div>
+  </div>
+</section>
+
+<section id="rejoindre" class="reveal">
+  <div class="callout"><div class="section-tag">À toi de jouer</div><h2>La communauté est notre force.</h2><p>Tu es fan de Stargate SG-1, Atlantis ou Universe ? Aide le projet à se faire connaître : parle-en autour de toi, partage la page et propose tes idées. Même sans contribuer financièrement, tu peux soutenir le mouvement.</p><div class="buttons"><a class="btn primary" href="#accueil">PARTAGER LE MESSAGE : #SAVE STARGATE</a></div></div>
+</section>
+</main>
+<footer><strong>#SAVE STARGATE</strong><br>Fait par un fan, pour les fans. 💙<br><br>Projet indépendant de fans, non affilié officiellement aux studios ou aux détenteurs des droits de Stargate. Les noms et marques cités appartiennent à leurs propriétaires respectifs.</footer>
+<script>
+const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];
+function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);stars=Array.from({length:Math.min(150,Math.floor(innerWidth/7))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.3,a:Math.random()*.65+.15,s:Math.random()*.25+.04}))}
+function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const s of stars){s.y-=s.s;if(s.y<0){s.y=innerHeight;s.x=Math.random()*innerWidth}ctx.globalAlpha=s.a*(.7+.3*Math.sin(Date.now()/700+s.x));ctx.fillStyle='#bceeff';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;requestAnimationFrame(draw)}
+addEventListener('resize',resize);resize();draw();
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.getElementById('menu').addEventListener('click',()=>{const n=document.getElementById('nav');n.style.display=n.style.display==='flex'?'none':'flex'});
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{if(innerWidth<=800)document.getElementById('nav').style.display='none'}));
+</script>
+</body>
+</html>
